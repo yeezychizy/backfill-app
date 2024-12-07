@@ -1,16 +1,20 @@
 package com.chizu.backfill.model;
 
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 /**
  * @author : chizubeokwuosa
  * @Description :
- * @created : chizubeokwuosa, Sunday
+ * @created : chizubeokwuosa, Tuesday
  **/
-
-
-
-public class AbsenceDto {
+@Entity
+public class Absence {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String startDate;
     private String endDate;
     private String reason;
@@ -19,11 +23,8 @@ public class AbsenceDto {
     private String fullName;
     private String status;
 
-    public AbsenceDto() {
-
-    }
-
-    public AbsenceDto(String startDate, String endDate, String reason, String className, String email, String fullName, String status) {
+    public Absence(Long id, String startDate, String endDate, String reason, String className, String email, String fullName, String status) {
+        this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.reason = reason;
@@ -31,6 +32,16 @@ public class AbsenceDto {
         this.email = email;
         this.fullName = fullName;
         this.status = status;
+    }
+    public Absence() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStartDate() {

@@ -1,28 +1,36 @@
 package com.chizu.backfill.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 /**
  * @author : chizubeokwuosa
  * @Description :
- * @created : chizubeokwuosa, Sunday
+ * @created : chizubeokwuosa, Tuesday
  **/
-
-
-
-public class SignupDto {
+public class StaffDto {
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String confirmPassword;
     private String role;
+    private String specialisation;
 
-    public SignupDto(String firstName, String lastName, String email, String password, String confirmPassword, String role) {
+    public StaffDto(String firstName, String lastName, String email, String password, String confirmPassword, String role, String specialisation) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.role = role;
+        this.specialisation = specialisation;
+    }
+
+    public StaffDto() {
     }
 
     public String getFirstName() {
@@ -72,6 +80,20 @@ public class SignupDto {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSpecialisation() {
+        return specialisation;
+    }
+
+    public void setSpecialisation(String specialisation) {
+        this.specialisation = specialisation;
+    }
 }
-
-

@@ -12,7 +12,7 @@ import java.util.Optional;
  * @created : chizubeokwuosa, Tuesday
  **/
 @Repository
-public interface RegistrationRepository  extends JpaRepository<Staff, Long> {
+public interface BackfillRepository extends JpaRepository<Staff, Long> {
 
     boolean existsByEmail(String email);
 

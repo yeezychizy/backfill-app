@@ -2,7 +2,7 @@ package com.chizu.backfill.service;
 
 import com.chizu.backfill.model.*;
 import com.chizu.backfill.repository.AbsenceRepository;
-import com.chizu.backfill.repository.RegistrationRepository;
+import com.chizu.backfill.repository.BackfillRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 public class BackfillService {
     public static final String EMAIL_ADDRESS_REGEXP = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     public static final String PASSWORD_REGEXP = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}$";
-    private final RegistrationRepository registrationRepository;
+    private final BackfillRepository backfillRepository;
     private final AbsenceRepository absenceRepository;
 
-    public BackfillService(RegistrationRepository registrationRepository, AbsenceRepository absenceRepository) {
-        this.registrationRepository = registrationRepository;
+    public BackfillService(BackfillRepository backfillRepository, AbsenceRepository absenceRepository) {
+        this.backfillRepository = backfillRepository;
         this.absenceRepository = absenceRepository;
     }
 
@@ -32,7 +32,7 @@ public class BackfillService {
         if(signup.getPassword().isBlank()){
             throw new IllegalArgumentException("Password cannot be empty");
         }
-        if(registrationRepository.existsByEmail(signup.getEmail())){
+        if(backfillRepository.existsByEmail(signup.getEmail())){
             throw new IllegalArgumentException("Email address already exists");
         }
         if (!signup.getEmail().matches(EMAIL_ADDRESS_REGEXP)){
@@ -58,7 +58,7 @@ public class BackfillService {
         }
         else staff.setRole("ROLE_USER");
 
-        registrationRepository.save(staff);
+        backfillRepository.save(staff);
         staff.setPassword(null);
         staff.setConfirmPassword(null);
 
@@ -66,7 +66,7 @@ public class BackfillService {
     }
 
     public Staff signin(SigninDto signin) {
-        Staff staff = registrationRepository.findByEmail(signin.getEmail()).orElse(null);
+        Staff staff = backfillRepository.findByEmail(signin.getEmail()).orElse(null);
         if (staff == null){
             throw new IllegalArgumentException("Email address not found");
         }
@@ -78,23 +78,14 @@ public class BackfillService {
             throw new IllegalArgumentException("Incorrect password");
         }
         staff.setSignedIn(true);
-        registrationRepository.save(staff);
+        backfillRepository.save(staff);
         staff.setPassword(null);
         staff.setConfirmPassword(null);
         return staff;
     }
 
     public Absence backfill(AbsenceDto absenceDto) {
-        Staff staff = registrationRepository.findByEmail(absenceDto.getEmail()).orElse(null);
-        if (staff == null){
-            throw new IllegalArgumentException("Email address not found");
-        }
-        if (!staff.isSignedUp()){
-            throw new IllegalArgumentException("Account has not been activated yet");
-        }
-        if (!staff.isSignedIn()){
-            throw new IllegalArgumentException("Account has not been activated yet");
-        }
+        Staff staff = signedInOrSignedUp(absenceDto.getEmail());
         Absence absence = new Absence();
         if (staff.getRole().equalsIgnoreCase("TEACHER")){
 
@@ -112,7 +103,8 @@ public class BackfillService {
     }
 
     public List<AbsenceDto> getAllAbsences(StaffDto staffDto) {
-        if (staffDto != null && staffDto.getRole().equalsIgnoreCase("HR")) {
+        signedInOrSignedUp(staffDto.getEmail());
+        if (staffDto.getRole().equalsIgnoreCase("HR")) {
             List<Absence> absences = absenceRepository.findAll();
             return absences.stream().map(absence -> new AbsenceDto(absence.getStartDate(), absence.getEndDate(), absence.getReason(), absence.getClassName(), absence.getEmail(), absence.getFullName(), absence.getStatus())).collect(Collectors.toList());
         }
@@ -120,19 +112,21 @@ public class BackfillService {
     }
 
     public List<StaffDto> getReplacements(StaffDto staffDto) {
-        if (staffDto!= null && staffDto.getRole().equalsIgnoreCase("HR")) {
-            List<Staff> staffs = registrationRepository.findAll().stream()
+        signedInOrSignedUp(staffDto.getEmail());
+        if (staffDto.getRole().equalsIgnoreCase("HR")) {
+            List<Staff> staffs = backfillRepository.findAll().stream()
                    .filter(s -> s.getRole().equalsIgnoreCase("TEACHER"))
                    .filter(s ->!s.getEmail().equalsIgnoreCase(staffDto.getEmail()))
                     .filter(s -> s.getSpecialisation().contains(staffDto.getSpecialisation()))
                    .toList();
-            return staffs.stream().map(staff -> new StaffDto(staff.getFirstName(), staff.getLastName(), staff.getEmail(), null, null, null, null)).collect(Collectors.toList());
+            return staffs.stream().map(staff1 -> new StaffDto(staff1.getFirstName(), staff1.getLastName(), staff1.getEmail(), null, null, staff1.getRole(), staff1.getSpecialisation())).collect(Collectors.toList());
         }
         return null;
     }
 
     public String getSelectedAbsences(StaffDto staffDto) {
-        if (staffDto!= null && staffDto.getRole().equalsIgnoreCase("HR")) {
+        signedInOrSignedUp(staffDto.getEmail());
+        if (staffDto.getRole().equalsIgnoreCase("HR")) {
             List<Absence> absences = absenceRepository.findAll().stream()
                    .filter(a -> a.getStatus().equalsIgnoreCase("Pending"))
                    .filter(a -> a.getEmail().equalsIgnoreCase(staffDto.getEmail()))
@@ -140,5 +134,19 @@ public class BackfillService {
             return absences.stream().map(Absence::getFullName).collect(Collectors.joining(", "));
         }
         return null;
+    }
+
+    private Staff signedInOrSignedUp(String staffDto) {
+        Staff staff = backfillRepository.findByEmail(staffDto).orElse(null);
+        if (staff == null) {
+            throw new IllegalArgumentException("Email address not found");
+        }
+        if (!staff.isSignedUp()) {
+            throw new IllegalArgumentException("Account has not been activated yet");
+        }
+        if (!staff.isSignedIn()) {
+            throw new IllegalArgumentException("Account has not been activated yet");
+        }
+        return staff;
     }
 }

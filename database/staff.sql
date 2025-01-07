@@ -1,0 +1,28 @@
+select * from staff -- Gives you all the items in the staff table
+-- (second line/Line 2) put in multiple records of the staff obect in the staff table
+INSERT INTO Staff (first_name, last_name, email, password, confirm_password, role, signed_in, signed_up, specialisation) VALUES
+('John', 'Doe', 'john.doe1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'Maths'),
+('Jane', 'Smith', 'jane.smith1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'Physics'),
+('Alice', 'Johnson', 'alice.johnson1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'English'),
+('Bob', 'Brown', 'bob.brown1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'French'),
+('Charlie', 'Davis', 'charlie.davis1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'Maths'),
+('Diana', 'Miller', 'diana.miller1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'Physics'),
+('Eve', 'Wilson', 'eve.wilson1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'English'),
+('Frank', 'Moore', 'frank.moore1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'French'),
+('Grace', 'Taylor', 'grace.taylor1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'Maths'),
+('Hank', 'Anderson', 'hank.anderson1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'Physics'),
+('Ivy', 'Thomas', 'ivy.thomas1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'English'),
+('Jack', 'Jackson', 'jack.jackson1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'French'),
+('Karen', 'White', 'karen.white1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'Maths'),
+('Leo', 'Harris', 'leo.harris1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'Physics'),
+('Mia', 'Martin', 'mia.martin1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'English'),
+('Nina', 'Thompson', 'nina.thompson1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'French'),
+('Oscar', 'Garcia', 'oscar.garcia1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'Maths'),
+('Paul', 'Martinez', 'paul.martinez1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'Physics'),
+('Quinn', 'Robinson', 'quinn.robinson1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'English'),
+('Rita', 'Clark', 'rita.clark1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'French'),
+('Sam', 'Rodriguez', 'sam.rodriguez1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'Maths'),
+('Tina', 'Lewis', 'tina.lewis1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'Physics'),
+('Uma', 'Lee', 'uma.lee1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'English'),
+('Victor', 'Walker', 'victor.walker1@example.com', 'Password123!', 'Password123!', 'HR', true, true, 'French'),
+('Wendy', 'Hall', 'wendy.hall1@example.com', 'Password123!', 'Password123!', 'TEACHER', true, true, 'Maths');

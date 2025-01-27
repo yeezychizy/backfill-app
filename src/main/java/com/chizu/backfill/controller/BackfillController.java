@@ -24,6 +24,7 @@ public class BackfillController {
         this.backfillService = backfillService;
     }
 
+    // http://localhost:8080/register/signup
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignupDto signup) {
         try {
@@ -37,7 +38,7 @@ public class BackfillController {
         }
     }
 
-    // signin
+    // http://localhost:8080/register/signin
     @PostMapping("/signin")
     public ResponseEntity<?> signin(@RequestBody SigninDto signin) {
         try {
@@ -52,6 +53,7 @@ public class BackfillController {
 
     }
 
+    // http://localhost:8080/register/backfill
     @PostMapping("/backfill")
     public ResponseEntity<?> backfill(@RequestBody AbsenceDto absenceDto) {
         try {
@@ -65,6 +67,7 @@ public class BackfillController {
         }
     }
 
+    // http://localhost:8080/register/absences
     @GetMapping("/absences")
     public ResponseEntity<?> getAllAbsences(@RequestBody StaffDto staffDto) {
 
@@ -79,6 +82,7 @@ public class BackfillController {
         }
     }
 
+    // http://localhost:8080/register/replacements
     @GetMapping("/replacements")
     public ResponseEntity<?> getReplacements(@RequestBody StaffDto staffDto) {
 
@@ -88,11 +92,12 @@ public class BackfillController {
         } catch (IllegalArgumentException e) {
 
             return ResponseEntity
-                   .status(HttpStatus.BAD_REQUEST)
-                   .body(e.getMessage());
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
         }
     }
 
+    // http://localhost:8080/register/selected
     @GetMapping("/selected")
     public ResponseEntity<?> getSelectedAbsences(@RequestBody StaffDto staffDto) {
 
@@ -102,9 +107,8 @@ public class BackfillController {
         } catch (IllegalArgumentException e) {
 
             return ResponseEntity
-                   .status(HttpStatus.BAD_REQUEST)
-                   .body(e.getMessage());
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
         }
     }
-
 }

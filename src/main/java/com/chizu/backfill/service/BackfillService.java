@@ -15,8 +15,10 @@ import java.util.stream.Collectors;
  **/
 @Service
 public class BackfillService {
-    public static final String EMAIL_ADDRESS_REGEXP = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    public static final String PASSWORD_REGEXP = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}$";
+    public static final String EMAIL_ADDRESS_REGEXP =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    public static final String PASSWORD_REGEXP =
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}$";
     private final BackfillRepository backfillRepository;
     private final AbsenceRepository absenceRepository;
 
@@ -51,6 +53,7 @@ public class BackfillService {
         staff.setPassword(signup.getPassword());
         staff.setConfirmPassword(signup.getConfirmPassword());
         staff.setSignedUp(true);
+        staff.setSpecialisation(signup.getSpecialization());
         if (signup.getRole().equalsIgnoreCase("HR")){
             staff.setRole("HR");
         } else if (signup.getRole().equalsIgnoreCase("TEACHER")) {
@@ -115,10 +118,10 @@ public class BackfillService {
         signedInOrSignedUp(staffDto.getEmail());
         if (staffDto.getRole().equalsIgnoreCase("HR")) {
             List<Staff> staffs = backfillRepository.findAll().stream()
-                   .filter(s -> s.getRole().equalsIgnoreCase("TEACHER"))
-                   .filter(s ->!s.getEmail().equalsIgnoreCase(staffDto.getEmail()))
+                    .filter(s -> s.getRole().equalsIgnoreCase("TEACHER"))
+                    .filter(s ->!s.getEmail().equalsIgnoreCase(staffDto.getEmail()))
                     .filter(s -> s.getSpecialisation().contains(staffDto.getSpecialisation()))
-                   .toList();
+                    .toList();
             return staffs.stream().map(staff1 -> new StaffDto(staff1.getFirstName(), staff1.getLastName(), staff1.getEmail(), null, null, staff1.getRole(), staff1.getSpecialisation())).collect(Collectors.toList());
         }
         return null;
@@ -128,9 +131,9 @@ public class BackfillService {
         signedInOrSignedUp(staffDto.getEmail());
         if (staffDto.getRole().equalsIgnoreCase("HR")) {
             List<Absence> absences = absenceRepository.findAll().stream()
-                   .filter(a -> a.getStatus().equalsIgnoreCase("Pending"))
-                   .filter(a -> a.getEmail().equalsIgnoreCase(staffDto.getEmail()))
-                   .toList();
+                    .filter(a -> a.getStatus().equalsIgnoreCase("Pending"))
+                    .filter(a -> a.getEmail().equalsIgnoreCase(staffDto.getEmail()))
+                    .toList();
             return absences.stream().map(Absence::getFullName).collect(Collectors.joining(", "));
         }
         return null;

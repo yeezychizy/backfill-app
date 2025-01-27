@@ -63,6 +63,7 @@
                                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal"
                                 placeholder="Enter first name"
                                 value=""
+                                id="firstName"
                         />
                     </label>
                 </div>
@@ -73,6 +74,7 @@
                                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal"
                                 placeholder="Enter last name"
                                 value=""
+                                id="lastName"
                         />
                     </label>
                 </div>
@@ -83,6 +85,7 @@
                                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal"
                                 placeholder="Enter Specialization"
                                 value=""
+                                id="specialization"
                         />
                     </label>
                 </div>
@@ -93,6 +96,7 @@
                                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal"
                                 placeholder="Enter email address"
                                 value=""
+                                id="email"
                         />
                     </label>
                 </div>
@@ -103,6 +107,7 @@
                                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal"
                                 placeholder="Enter password"
                                 value=""
+                                id="password"
                         />
                     </label>
                 </div>
@@ -113,13 +118,14 @@
                                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal"
                                 placeholder="Enter password"
                                 value=""
+                                id="confirmPassword"
                         />
                     </label>
                 </div>
                 <div class="flex max-w-[700px] flex-wrap items-end gap-4 px-4 py-3 mx-auto">
                     <label class="flex flex-col min-w-40 flex-1">
                         <p class="text-[#0e141b] text-base font-medium leading-normal pb-2">Role</p>
-                        <select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal">
+                        <select id="role" class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0e141b] focus:outline-0 focus:ring-0 border border-[#d0dbe7] bg-slate-50 focus:border-[#d0dbe7] h-14 placeholder:text-[#4e7397] p-[15px] text-base font-normal leading-normal">
                             <option value="Teacher">Teacher</option>
                             <option value="HR">Human Resource Personnel</option>
                             <option value="Absence Coordinator">Absence Coordinator</option>
@@ -131,24 +137,74 @@
                         <input
                                 class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1980e6] checked:bg-[#1980e6] checked:border-[#1980e6] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
                                 type="checkbox"
+                                id="terms"
                         />
                         <p class="text-[#0e141b] text-base font-normal leading-normal">I agree to the Terms of Service
                             and Privacy Policy</p>
                     </label>
                 </div>
                 <div class="flex px-4 py-3 mx-auto">
-                    <a href="signin.html">
-                        <button
-                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 flex-1 bg-[#1980e6] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]"
-                        >
-                            <span class="truncate">Signup</span>
-                        </button>
-                    </a>
+                    <!--                    <a href="signin.html">-->
+                    <button id="signupButton"
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 flex-1 bg-[#1980e6] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]"
+                    >
+                        <span class="truncate">Signup</span>
+                    </button>
+                    <!--                    </a>-->
                 </div>
             </div>
+            <script>
+                document.getElementById('signupButton').addEventListener('click', async function(event) {
+                    event.preventDefault();
+
+                    const firstName = document.getElementById('firstName').value;
+                    const lastName = document.getElementById('lastName').value;
+                    const specialization = document.getElementById('specialization').value;
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    const role = document.getElementById('role').value;
+                    const terms = document.getElementById('terms').checked;
+
+                    if (!terms) {
+                        alert('You must agree to the terms and conditions');
+                        return;
+                    }
+
+                    const data = {
+                        firstName,
+                        lastName,
+                        specialization,
+                        email,
+                        password,
+                        confirmPassword,
+                        role
+                    };
+
+                    try {
+                        const response = await fetch('http://localhost:8080/register/signup', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        if (response.ok) {
+                            const result = await response.json();
+                            console.log('Signup successful:', result);
+                            window.location.href = 'signin.html';
+                        } else {
+                            const error = await response.text();
+                            console.error('Signup failed:', error);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            </script>
         </div>
     </div>
 </div>
 </body>
 </html>
-

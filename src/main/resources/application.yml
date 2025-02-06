@@ -12,3 +12,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  security:
+    cors:
+      allowed-origins: https://backfillapp-20728b293020.herokuapp.com
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-headers: Content-Type,Authorization,X-Requested-With
+      exposed-headers: Access-Control-Allow-Origin,Access-Control-Allow-Credentials
+      allow-credentials: true

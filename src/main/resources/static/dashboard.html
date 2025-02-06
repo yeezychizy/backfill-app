@@ -84,58 +84,41 @@
                         </button>
                     </div>
                 </div>
-                <div class="p-4 @container">
-                    <div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-[#d0dbe7] bg-slate-50 p-5 @[480px]:flex-row @[480px]:items-center">
-                        <div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-[#d0dbe7] bg-slate-50 p-5 @[480px]:flex-row @[480px]:items-center">
-                            <div class="flex flex-col gap-1">
-                                <p class="text-[#0e141b] text-base font-bold leading-tight">Load backfill Request </p>
-                                <p class="text-[#4e7397] text-base font-normal leading-normal">
-                                    Click this button to load all current and existing backfill requests from teachers
-                                </p>
-                            </div>
-                            <div class="flex gap-2">
-                                <button
-                                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1980e6] text-slate-50 text-sm font-medium leading-normal"
-                                >
-                                    <span class="truncate">Load Request</span>
-                                </button>
-                            </div>
-                        </div>
-                </div>
+
                 <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Current
                     backfill requests</h3>
-                    <div class="px-4 py-3 @container">
-                        <div class="flex overflow-hidden rounded-xl border border-[#d0dbe7] bg-slate-50">
-                            <table class="flex-1">
-                                <thead>
-                                <tr class="bg-slate-50">
-                                    <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                        Class
-                                    </th>
-                                    <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                        Start date
-                                    </th>
-                                    <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                        End date
-                                    </th>
-                                    <th class="px-4 py-3 text-left text-[#0e141b] w-60 text-sm font-medium leading-normal">
-                                        Status
-                                    </th>
-                                    <th class="px-4 py-3 text-left text-[#4e7397] w-60 text-[#4e7397] text-sm font-medium leading-normal">
-                                        <button onclick="getReplacements()">Action</button>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody id="absences-table-body">
-                                <!-- Rows will be dynamically added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="px-4 py-3 @container">
+                    <div class="flex overflow-hidden rounded-xl border border-[#d0dbe7] bg-slate-50">
+                        <table class="flex-1">
+                            <thead>
+                            <tr class="bg-slate-50">
+                                <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
+                                    Class
+                                </th>
+                                <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
+                                    Start date
+                                </th>
+                                <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
+                                    End date
+                                </th>
+                                <th class="px-4 py-3 text-left text-[#0e141b] w-60 text-sm font-medium leading-normal">
+                                    Status
+                                </th>
+                                <th class="px-4 py-3 text-left text-[#0e141b] w-60 text-sm font-medium leading-normal">
+                                    <button onclick="getReplacements()">Email</button>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id="absences-table-body">
+                            <!-- Rows will be dynamically added here -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <script>
     // Function to go to the notify page when clicked
@@ -144,18 +127,65 @@
     }
 
 
-
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the email from the sign-in form
-        const email = localStorage.getItem('email');
+    // Get the email from the sign-in form
+    const email = localStorage.getItem('email');
 
-        // Fetch data from the API
-        fetch(`http://localhost:8080/register/absences?email=${email}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
+    // Fetch data from the API
+    fetch(`http://localhost:8080/register/absences?email=${email}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Data fetched successfully:', data);
+
+        // Populate the table with the fetched data
+        const tableBody = document.getElementById('absences-table-body');
+        data.forEach(absence => {
+            const row = document.createElement('tr');
+
+            const classCell = document.createElement('td');
+            classCell.textContent = absence.className;
+            row.appendChild(classCell);
+
+            const startDateCell = document.createElement('td');
+            startDateCell.textContent = absence.startDate;
+            row.appendChild(startDateCell);
+
+            const endDateCell = document.createElement('td');
+            endDateCell.textContent = absence.endDate;
+            row.appendChild(endDateCell);
+
+            const statusCell = document.createElement('td');
+            statusCell.textContent = absence.status;
+            row.appendChild(statusCell);
+
+            const emailCell = document.createElement('td');
+            emailCell.textContent = absence.email;
+            emailCell.addEventListener('click', function() {
+                getReplacements(absence.email);
+            });
+            row.appendChild(emailCell);
+
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to fetch data. Please try again later.');
+    });
+});
+
+function getReplacements(email) {
+    fetch(`http://localhost:8080/register/replacements?email=${email}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
@@ -164,46 +194,14 @@
         })
         .then(data => {
             console.log('Data fetched successfully:', data);
-
-            // Populate the table with the fetched data
-            const tableBody = document.getElementById('absences-table-body');
-            data.forEach(absence => {
-                const row = document.createElement('tr');
-
-                const classCell = document.createElement('td');
-                classCell.textContent = absence.className;
-                row.appendChild(classCell);
-
-                const startDateCell = document.createElement('td');
-                startDateCell.textContent = absence.startDate;
-                row.appendChild(startDateCell);
-
-                const endDateCell = document.createElement('td');
-                endDateCell.textContent = absence.endDate;
-                row.appendChild(endDateCell);
-
-                const statusCell = document.createElement('td');
-                statusCell.textContent = absence.status;
-                row.appendChild(statusCell);
-
-                const actionsCell = document.createElement('td');
-                const actionButton = document.createElement('button');
-                actionButton.textContent = 'Action';
-                actionButton.addEventListener('click', function() {
-                    // Perform action on click
-                    console.log('Perform action for absence:', absence);
-                });
-                actionsCell.appendChild(actionButton);
-                row.appendChild(actionsCell);
-
-                tableBody.appendChild(row);
-            });
+            // Pass the fetched data to the options.html page
+            window.location.href = 'options.html?data=' + encodeURIComponent(JSON.stringify(data));
         })
         .catch(error => {
             console.error('Error:', error);
             alert('Failed to fetch data. Please try again later.');
         });
-    });
+}
 </script>
 </body>
 </html>

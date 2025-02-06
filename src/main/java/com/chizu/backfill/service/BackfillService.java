@@ -116,7 +116,7 @@ public class BackfillService {
 
     public List<StaffDto> getReplacements(String email) {
         Staff staff = signedInOrSignedUp(email);
-        if (staff.getRole().equalsIgnoreCase("HR")) {
+        if (staff.getRole().equalsIgnoreCase("TEACHER")) {
             List<Staff> staffs = backfillRepository.findAll().stream()
                     .filter(s -> s.getRole().equalsIgnoreCase("TEACHER"))
                     .filter(s ->!s.getEmail().equalsIgnoreCase(staff.getEmail()))

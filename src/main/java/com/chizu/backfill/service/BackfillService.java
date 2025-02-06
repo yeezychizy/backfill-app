@@ -105,22 +105,22 @@ public class BackfillService {
         return absence;
     }
 
-    public List<AbsenceDto> getAllAbsences(StaffDto staffDto) {
-        signedInOrSignedUp(staffDto.getEmail());
-        if (staffDto.getRole().equalsIgnoreCase("HR")) {
+    public List<AbsenceDto> getAllAbsences(String email) {
+        Staff staff = signedInOrSignedUp(email);
+        if (staff.getRole().equalsIgnoreCase("HR")) {
             List<Absence> absences = absenceRepository.findAll();
             return absences.stream().map(absence -> new AbsenceDto(absence.getStartDate(), absence.getEndDate(), absence.getReason(), absence.getClassName(), absence.getEmail(), absence.getFullName(), absence.getStatus())).collect(Collectors.toList());
         }
         return null;
     }
 
-    public List<StaffDto> getReplacements(StaffDto staffDto) {
-        signedInOrSignedUp(staffDto.getEmail());
-        if (staffDto.getRole().equalsIgnoreCase("HR")) {
+    public List<StaffDto> getReplacements(String email) {
+        Staff staff = signedInOrSignedUp(email);
+        if (staff.getRole().equalsIgnoreCase("HR")) {
             List<Staff> staffs = backfillRepository.findAll().stream()
                     .filter(s -> s.getRole().equalsIgnoreCase("TEACHER"))
-                    .filter(s ->!s.getEmail().equalsIgnoreCase(staffDto.getEmail()))
-                    .filter(s -> s.getSpecialisation().contains(staffDto.getSpecialisation()))
+                    .filter(s ->!s.getEmail().equalsIgnoreCase(staff.getEmail()))
+                    .filter(s -> s.getSpecialisation().contains(staff.getSpecialisation()))
                     .toList();
             return staffs.stream().map(staff1 -> new StaffDto(staff1.getFirstName(), staff1.getLastName(), staff1.getEmail(), null, null, staff1.getRole(), staff1.getSpecialisation())).collect(Collectors.toList());
         }

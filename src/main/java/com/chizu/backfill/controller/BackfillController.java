@@ -69,10 +69,10 @@ public class BackfillController {
 
     // http://localhost:8080/register/absences
     @GetMapping("/absences")
-    public ResponseEntity<?> getAllAbsences(@RequestBody StaffDto staffDto) {
+    public ResponseEntity<?> getAllAbsences(@RequestParam(value = "email") String email) {
 
         try {
-            List<AbsenceDto> absence = backfillService.getAllAbsences(staffDto);
+            List<AbsenceDto> absence = backfillService.getAllAbsences(email);
             return ResponseEntity.ok(absence);
         } catch (IllegalArgumentException e) {
 
@@ -84,10 +84,10 @@ public class BackfillController {
 
     // http://localhost:8080/register/replacements
     @GetMapping("/replacements")
-    public ResponseEntity<?> getReplacements(@RequestBody StaffDto staffDto) {
+    public ResponseEntity<?> getReplacements(@RequestParam(value = "email") String email) {
 
         try {
-            List<StaffDto> replacements = backfillService.getReplacements(staffDto);
+            List<StaffDto> replacements = backfillService.getReplacements(email);
             return ResponseEntity.ok(replacements);
         } catch (IllegalArgumentException e) {
 

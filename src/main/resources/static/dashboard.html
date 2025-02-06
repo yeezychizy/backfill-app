@@ -78,436 +78,132 @@
                         </div>
                         <button
                                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1980e6] text-slate-50 text-sm font-medium leading-normal"
+                                onclick="goToNotifyPage()"
                         >
-                            <span class="truncate">Request backfill</span>
+                            <span class="truncate">Load Request</span>
                         </button>
                     </div>
                 </div>
                 <div class="p-4 @container">
                     <div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-[#d0dbe7] bg-slate-50 p-5 @[480px]:flex-row @[480px]:items-center">
-                        <div class="flex flex-col gap-1">
-                            <p class="text-[#0e141b] text-base font-bold leading-tight">View schedule</p>
-                            <p class="text-[#4e7397] text-base font-normal leading-normal">
-                                See your schedule with all of your classes, including which ones are in the process of
-                                being backfilled.
-                            </p>
-                        </div>
-                        <a class="text-sm font-bold leading-normal tracking-[0.015em] flex gap-2 text-[#0e141b]"
-                           href="#">
-                            View schedule
-                            <div class="text-[#0e141b]" data-icon="ArrowRight" data-size="20px" data-weight="regular">
-                                <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                            d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"
-                                    ></path>
-                                </svg>
+                        <div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-[#d0dbe7] bg-slate-50 p-5 @[480px]:flex-row @[480px]:items-center">
+                            <div class="flex flex-col gap-1">
+                                <p class="text-[#0e141b] text-base font-bold leading-tight">Load backfill Request </p>
+                                <p class="text-[#4e7397] text-base font-normal leading-normal">
+                                    Click this button to load all current and existing backfill requests from teachers
+                                </p>
                             </div>
-                        </a>
-                    </div>
+                            <div class="flex gap-2">
+                                <button
+                                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1980e6] text-slate-50 text-sm font-medium leading-normal"
+                                >
+                                    <span class="truncate">Load Request</span>
+                                </button>
+                            </div>
+                        </div>
                 </div>
                 <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Current
                     backfill requests</h3>
-                <div class="px-4 py-3 @container">
-                    <div class="flex overflow-hidden rounded-xl border border-[#d0dbe7] bg-slate-50">
-                        <table class="flex-1">
-                            <thead>
-                            <tr class="bg-slate-50">
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                    Class
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                    Start date
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                    End date
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 px-4 py-3 text-left text-[#0e141b] w-60 text-sm font-medium leading-normal">
-                                    Status
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 px-4 py-3 text-left text-[#0e141b] w-60 text-[#4e7397] text-sm font-medium leading-normal">
-                                    Actions
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    Math 101
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jun 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jun 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Requested</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    English 201
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jul 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jul 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Processing</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    Science 301
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Aug 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Aug 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <a href="options.html">
-                                        <button
-                                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                        >
-                                            <span class="truncate">Approved</span>
-                                        </button>
-                                    </a>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    History 401
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Sep 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Sep 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Requested</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    Art 501
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Oct 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Oct 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Processing</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <style>
-                        @container(max-width:120px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120{display: none;}}
-                        @container(max-width:240px){.table-<html>
-<head>
-    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-    <link
-            as="style"
-            href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Public+Sans%3Awght%40400%3B500%3B700%3B900"
-            onload="this.rel='stylesheet'"
-            rel="stylesheet"
-    />
-
-    <title>BackFill Application - Chizube Okwuosa</title>
-    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
-
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-</head>
-<body>
-<div class="relative flex size-full min-h-screen flex-col bg-slate-50 group/design-root overflow-x-hidden"
-     style='font-family: "Public Sans", "Noto Sans", sans-serif;'>
-    <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-10 py-3">
-            <div class="flex items-center gap-4 text-[#0e141b]">
-                <h2 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em]">BackFill</h2>
-            </div>
-            <div class="flex flex-1 justify-end gap-8">
-                <div class="flex items-center gap-9">
-                    <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">How it works</a>
-                    <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Testimonials</a>
-                    <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">About us</a>
-                    <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Company</a>
-                </div>
-                <div class="flex gap-2">
-                    <button
-                            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#e7edf3] text-[#0e141b] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
-                    >
-                        <div class="text-[#0e141b]" data-icon="MagnifyingGlass" data-size="20px" data-weight="regular">
-                            <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                                ></path>
-                            </svg>
+                    <div class="px-4 py-3 @container">
+                        <div class="flex overflow-hidden rounded-xl border border-[#d0dbe7] bg-slate-50">
+                            <table class="flex-1">
+                                <thead>
+                                <tr class="bg-slate-50">
+                                    <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
+                                        Class
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
+                                        Start date
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
+                                        End date
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-[#0e141b] w-60 text-sm font-medium leading-normal">
+                                        Status
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-[#4e7397] w-60 text-[#4e7397] text-sm font-medium leading-normal">
+                                        <button onclick="getReplacements()">Action</button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="absences-table-body">
+                                <!-- Rows will be dynamically added here -->
+                                </tbody>
+                            </table>
                         </div>
-                    </button>
-                    <button
-                            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#e7edf3] text-[#0e141b] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
-                    >
-                        <div class="text-[#0e141b]" data-icon="Bell" data-size="20px" data-weight="regular">
-                            <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"
-                                ></path>
-                            </svg>
-                        </div>
-                    </button>
-                </div>
-                <div
-                        class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-                        style='background-image: url("https://cdn.usegalileo.ai/stability/c947da80-d9b8-49c7-a535-042833119259.png");'
-                ></div>
-            </div>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-            <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-                <div class="flex flex-wrap justify-between gap-3 p-4"><p
-                        class="text-[#0e141b] tracking-light text-[32px] font-bold leading-tight min-w-72">Teacher
-                    backfill</p></div>
-                <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Quick
-                    actions</h3>
-                <div class="p-4 @container">
-                    <div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-[#d0dbe7] bg-slate-50 p-5 @[480px]:flex-row @[480px]:items-center">
-                        <div class="flex flex-col gap-1">
-                            <p class="text-[#0e141b] text-base font-bold leading-tight">Request a backfill</p>
-                            <p class="text-[#4e7397] text-base font-normal leading-normal">
-                                When you have a teacher who is going to be out for an extended period of time, select
-                                the dates and request a backfill.
-                            </p>
-                        </div>
-                        <button
-                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1980e6] text-slate-50 text-sm font-medium leading-normal"
-                        >
-                            <span class="truncate">Request backfill</span>
-                        </button>
                     </div>
-                </div>
-                <div class="p-4 @container">
-                    <div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-[#d0dbe7] bg-slate-50 p-5 @[480px]:flex-row @[480px]:items-center">
-                        <div class="flex flex-col gap-1">
-                            <p class="text-[#0e141b] text-base font-bold leading-tight">View schedule</p>
-                            <p class="text-[#4e7397] text-base font-normal leading-normal">
-                                See your schedule with all of your classes, including which ones are in the process of
-                                being backfilled.
-                            </p>
-                        </div>
-                        <a class="text-sm font-bold leading-normal tracking-[0.015em] flex gap-2 text-[#0e141b]"
-                           href="#">
-                            View schedule
-                            <div class="text-[#0e141b]" data-icon="ArrowRight" data-size="20px" data-weight="regular">
-                                <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                            d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"
-                                    ></path>
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Current
-                    backfill requests</h3>
-                <div class="px-4 py-3 @container">
-                    <div class="flex overflow-hidden rounded-xl border border-[#d0dbe7] bg-slate-50">
-                        <table class="flex-1">
-                            <thead>
-                            <tr class="bg-slate-50">
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                    Class
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                    Start date
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
-                                    End date
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 px-4 py-3 text-left text-[#0e141b] w-60 text-sm font-medium leading-normal">
-                                    Status
-                                </th>
-                                <th class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 px-4 py-3 text-left text-[#0e141b] w-60 text-[#4e7397] text-sm font-medium leading-normal">
-                                    Actions
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    Math 101
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jun 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jun 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Requested</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    English 201
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jul 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Jul 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Processing</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    Science 301
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Aug 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Aug 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <a href="options.html">
-                                        <button
-                                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                        >
-                                            <span class="truncate">Approved</span>
-                                        </button>
-                                    </a>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    History 401
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Sep 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Sep 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Requested</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            <tr class="border-t border-t-[#d0dbe7]">
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                                    Art 501
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Oct 1, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
-                                    Oct 15, 2023
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480 h-[72px] px-4 py-2 w-60 text-sm font-normal leading-normal">
-                                    <button
-                                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-full"
-                                    >
-                                        <span class="truncate">Processing</span>
-                                    </button>
-                                </td>
-                                <td class="table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                    Request Backfill
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <style>
-                        @container(max-width:120px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-120{display: none;}}
-                        @container(max-width:240px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240{display: none;}}
-                        @container(max-width:360px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360{display: none;}}
-                        @container(max-width:480px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480{display: none;}}
-                        @container(max-width:600px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600{display: none;}}
-                    </style>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</body>
-</html>87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-240{display: none;}}
-                        @container(max-width:360px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-360{display: none;}}
-                        @container(max-width:480px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-480{display: none;}}
-                        @container(max-width:600px){.table-87b250b1-f7ca-4ce9-b34b-fc57e248d6dd-column-600{display: none;}}
-                    </style>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    // Function to go to the notify page when clicked
+    function goToNotifyPage() {
+        window.location.href = 'notify.html';
+    }
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the email from the sign-in form
+        const email = localStorage.getItem('email');
+
+        // Fetch data from the API
+        fetch(`http://localhost:8080/register/absences?email=${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data fetched successfully:', data);
+
+            // Populate the table with the fetched data
+            const tableBody = document.getElementById('absences-table-body');
+            data.forEach(absence => {
+                const row = document.createElement('tr');
+
+                const classCell = document.createElement('td');
+                classCell.textContent = absence.className;
+                row.appendChild(classCell);
+
+                const startDateCell = document.createElement('td');
+                startDateCell.textContent = absence.startDate;
+                row.appendChild(startDateCell);
+
+                const endDateCell = document.createElement('td');
+                endDateCell.textContent = absence.endDate;
+                row.appendChild(endDateCell);
+
+                const statusCell = document.createElement('td');
+                statusCell.textContent = absence.status;
+                row.appendChild(statusCell);
+
+                const actionsCell = document.createElement('td');
+                const actionButton = document.createElement('button');
+                actionButton.textContent = 'Action';
+                actionButton.addEventListener('click', function() {
+                    // Perform action on click
+                    console.log('Perform action for absence:', absence);
+                });
+                actionsCell.appendChild(actionButton);
+                row.appendChild(actionsCell);
+
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to fetch data. Please try again later.');
+        });
+    });
+</script>
 </body>
 </html>

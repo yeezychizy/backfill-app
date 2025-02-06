@@ -132,7 +132,7 @@
     const email = localStorage.getItem('email');
 
     // Fetch data from the API
-    fetch(`http://localhost:8080/register/absences?email=${email}`, {
+    fetch(`https://backfillapp-20728b293020.herokuapp.com/register/absences?email=${email}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -185,7 +185,7 @@
 });
 
 function getReplacements(email) {
-    fetch(`http://localhost:8080/register/replacements?email=${email}`)
+    fetch(`https://backfillapp-20728b293020.herokuapp.com/register/replacements?email=${email}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
